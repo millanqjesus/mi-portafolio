@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Jesús Antonio Millán Quereigua</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              display: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-slate-100 text-slate-800 font-sans">
+
+    <header class="bg-white/80 backdrop-blur-sm shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-display text-2xl font-bold text-slate-900">Jesús Antonio Millán Quereigua</a>
+            
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#inicio" class="font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300" data-translate="navInicio">Inicio</a></li>
+                <li><a href="#proyectos" class="font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300" data-translate="navProyectos">Proyectos</a></li>
+                <li><a href="#habilidades" class="font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300" data-translate="navHabilidades">Habilidades</a></li>
+                <li><a href="#contacto" class="font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300" data-translate="navContacto">Contacto</a></li>
+                <div class="flex items-center space-x-4 ml-8">
+                    <button data-lang="es" class="lang-btn font-medium text-sm">ES</button>
+                    <button data-lang="pt" class="lang-btn font-medium text-sm text-slate-400">PT</button>
+                    <button data-lang="en" class="lang-btn font-medium text-sm text-slate-400">EN</button>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="bg-white min-h-screen flex flex-col justify-center items-center text-center px-6">
+            <div class="max-w-3xl">
+                <h1 data-translate="heroTitle" class="font-display text-4xl md:text-6xl font-bold text-slate-900 leading-tight mb-4"></h1>
+                <p data-translate="heroSubtitle" class="text-lg md:text-xl text-slate-600 mb-8"></p>
+                <a href="#proyectos" data-translate="heroButton" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-blue-700 hover:scale-105"></a>
+                <div class="mt-10 flex justify-center space-x-6">
+                    <a href="https://github.com/millanqjesus" target="_blank" aria-label="GitHub" class="text-slate-500 text-3xl hover:text-blue-600 transition-colors duration-300"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/jesus-antonio-millan-quereigua-7bb804186/" target="_blank" aria-label="LinkedIn" class="text-slate-500 text-3xl hover:text-blue-600 transition-colors duration-300"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="py-20 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 data-translate="proyectosTitle" class="font-display text-4xl font-bold text-slate-900"></h2>
+                    <p data-translate="proyectosSubtitle" class="mt-4 max-w-2xl mx-auto text-lg text-slate-600"></p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="bg-indigo-200 h-48 flex items-center justify-center"><i class="fas fa-clipboard-check text-indigo-600 text-6xl"></i></div>
+                        <div class="p-6"><h3 data-translate="project1Title" class="font-display text-2xl font-semibold text-slate-800 mb-2"></h3><p data-translate="project1Desc" class="text-slate-500 mb-4"></p><div class="flex flex-wrap gap-2 mb-6"><span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">HTML5</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">AJAX</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">C# (.NET)</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">SQL Server</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">GIT</span></div></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="bg-teal-200 h-48 flex items-center justify-center"><i class="fas fa-headset text-teal-600 text-6xl"></i></div>
+                        <div class="p-6"><h3 data-translate="project2Title" class="font-display text-2xl font-semibold text-slate-800 mb-2"></h3><p data-translate="project2Desc" class="text-slate-500 mb-4"></p><div class="flex flex-wrap gap-2 mb-6"><span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">PHP</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">Laravel</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">AJAX</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">DataTables</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">MySQL</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">ECharts.js</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">GIT</span></div></div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <div class="bg-gray-200 h-48 flex items-center justify-center"><i class="fas fa-building-shield text-gray-600 text-6xl"></i></div>
+                        <div class="p-6"><h3 data-translate="project3Title" class="font-display text-2xl font-semibold text-slate-800 mb-2"></h3><p data-translate="project3Desc" class="text-slate-500 mb-4"></p><div class="flex flex-wrap gap-2 mb-6"><span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">PHP</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">MySQL</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">Bootstrap</span> <span class="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">GIT</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades" class="bg-white py-20 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 data-translate="skillsTitle" class="font-display text-4xl font-bold text-slate-900"></h2>
+                    <p data-translate="skillsSubtitle" class="mt-4 max-w-2xl mx-auto text-lg text-slate-600"></p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-slate-50 p-8 rounded-lg shadow-sm border border-slate-200">
+                        <div class="flex items-center mb-4"><i class="fas fa-lightbulb text-blue-600 text-3xl mr-4"></i><h3 data-translate="skillCard1Title" class="font-display text-2xl font-semibold text-slate-800"></h3></div>
+                        <p data-translate="skillCard1Desc" class="text-slate-500 mb-6"></p>
+                        <div class="flex flex-wrap gap-2"><span data-translate="skillPillUX" class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full"></span> <span data-translate="skillPillArch" class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full"></span></div>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-lg shadow-sm border border-slate-200">
+                        <div class="flex items-center mb-4"><i class="fas fa-code text-blue-600 text-3xl mr-4"></i><h3 data-translate="skillCard2Title" class="font-display text-2xl font-semibold text-slate-800"></h3></div>
+                        <p data-translate="skillCard2Desc" class="text-slate-500 mb-6"></p>
+                        <div class="flex flex-wrap gap-2"><span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">HTML5 & CSS3</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript (ES6+)</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">React</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Vue.js</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Tailwind CSS</span></div>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-lg shadow-sm border border-slate-200">
+                        <div class="flex items-center mb-4"><i class="fas fa-server text-blue-600 text-3xl mr-4"></i><h3 data-translate="skillCard3Title" class="font-display text-2xl font-semibold text-slate-800"></h3></div>
+                        <p data-translate="skillCard3Desc" class="text-slate-500 mb-6"></p>
+                        <div class="flex flex-wrap gap-2"><span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">PHP</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Node.js</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Laravel</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">PostgreSQL</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">SQL Server</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span> <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">REST APIs</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 data-translate="contactTitle" class="font-display text-4xl font-bold text-slate-900"></h2>
+                 <p data-translate="contactSubtitle" class="mt-4 max-w-xl mx-auto text-lg text-slate-600"></p>
+                 <a href="mailto:tu-email@dominio.com" data-translate="contactButton" class="mt-8 inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-blue-700 hover:scale-105"></a>
+            </div>
+        </section>
+    </main>
+
+    <script src="./index.js"></script>
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', () => {
+
+        //     console.warn(222)
+        //     const translations = {
+        //         es: {
+        //             // Navegación
+        //             navInicio: "Inicio",
+        //             navProyectos: "Proyectos",
+        //             navHabilidades: "Habilidades",
+        //             navContacto: "Contacto",
+        //             // Hero Section
+        //             heroTitle: "Hola, soy Jesús Millán,<br>Desarrollador Full-Stack.",
+        //             heroSubtitle: "Transformando ideas en experiencias digitales robustas y escalables.",
+        //             heroButton: "Ver Mis Proyectos",
+        //             // Proyectos
+        //             proyectosTitle: "Proyectos Destacados",
+        //             proyectosSubtitle: "Aquí presento algunos de los desafíos que he resuelto, enfocándome en el problema, la solución y el impacto generado para el negocio.",
+        //             project1Title: "Plataforma de Auditorías en Tiempo Real",
+        //             project1Desc: "Aplicación web para optimizar la programación y ejecución de auditorías internas, entregando indicadores a la dirección el mismo día.",
+        //             project2Title: "Plataforma de QA para Ventas de Seguros",
+        //             project2Desc: "Sistema web para auditar llamadas de ventas, automatizando alertas críticas y generando reportes de efectividad para la gerencia.",
+        //             project3Title: "Mantenimiento Evolutivo de ERP Gubernamental",
+        //             project3Desc: "Responsable de la corrección de bugs y adaptación de flujos de trabajo en un sistema monolítico a gran escala para una entidad de control fiscal.",
+        //             // Habilidades
+        //             skillsTitle: "De la Idea al Lanzamiento",
+        //             skillsSubtitle: "Más que un programador, soy un socio tecnológico. Mi objetivo es acompañarte en cada fase del proyecto para convertir tu visión en una realidad digital exitosa.",
+        //             skillCard1Title: "1. Estrategia y Diseño",
+        //             skillCard1Desc: "Todo gran producto empieza con un plan sólido. Te ayudo a definir la estructura y la experiencia de usuario para sentar las bases del éxito.",
+        //             skillPillUX: "UX/UI Prototyping",
+        //             skillPillArch: "Arquitectura de Software",
+        //             skillCard2Title: "2. Desarrollo Frontend",
+        //             skillCard2Desc: "Construyo interfaces rápidas, interactivas y accesibles que tus usuarios amarán, totalmente adaptadas a cualquier dispositivo.",
+        //             skillCard3Title: "3. Backend y Datos",
+        //             skillCard3Desc: "Desarrollo la lógica de negocio y las bases de datos seguras y escalables que dan vida a la aplicación y protegen tu información.",
+        //             // Contacto
+        //             contactTitle: "Contacto",
+        //             contactSubtitle: "Hablemos. Estoy disponible para nuevos proyectos y oportunidades.",
+        //             contactButton: "Envíame un Email",
+        //         },
+        //         pt: {
+        //             navInicio: "Início",
+        //             navProyectos: "Projetos",
+        //             navHabilidades: "Habilidades",
+        //             navContacto: "Contato",
+        //             heroTitle: "Olá, eu sou Jesús Millán,<br>Desenvolvedor Full-Stack.",
+        //             heroSubtitle: "Transformando ideias em experiências digitais robustas e escaláveis.",
+        //             heroButton: "Ver Meus Projetos",
+        //             proyectosTitle: "Projetos em Destaque",
+        //             proyectosSubtitle: "Aqui apresento alguns dos desafios que resolvi, focando no problema, na solução e no impacto gerado para o negócio.",
+        //             project1Title: "Plataforma de Auditorias em Tempo Real",
+        //             project1Desc: "Aplicação web para otimizar o agendamento e a execução de auditorias internas, entregando indicadores à gerência no mesmo dia.",
+        //             project2Title: "Plataforma de QA para Vendas de Seguros",
+        //             project2Desc: "Sistema web para auditar chamadas de vendas, automatizando alertas críticos e gerando relatórios de eficácia para a gerência.",
+        //             project3Title: "Manutenção Evolutiva de ERP Governamental",
+        //             project3Desc: "Responsável pela correção de bugs e adaptação de fluxos de trabalho em um sistema monolítico de grande escala para uma entidade de controle fiscal.",
+        //             skillsTitle: "Da Ideia ao Lançamento",
+        //             skillsSubtitle: "Mais que um programador, sou um parceiro de tecnologia. Meu objetivo é acompanhar você em cada fase do projeto para transformar sua visão em uma realidade digital de sucesso.",
+        //             skillCard1Title: "1. Estratégia e Design",
+        //             skillCard1Desc: "Todo grande produto começa com um plano sólido. Eu ajudo a definir a estrutura e a experiência do usuário para estabelecer as bases para o sucesso.",
+        //             skillPillUX: "Prototipagem UX/UI",
+        //             skillPillArch: "Arquitetura de Software",
+        //             skillCard2Title: "2. Desenvolvimento Frontend",
+        //             skillCard2Desc: "Construo interfaces rápidas, interativas e acessíveis que seus usuários vão adorar, totalmente adaptadas a qualquer dispositivo.",
+        //             skillCard3Title: "3. Backend e Dados",
+        //             skillCard3Desc: "Desenvolvo a lógica de negócio e os bancos de dados seguros e escaláveis que dão vida à aplicação e protegem suas informações.",
+        //             contactTitle: "Contato",
+        //             contactSubtitle: "Vamos conversar. Estou disponível para novos projetos e oportunidades.",
+        //             contactButton: "Envie-me um E-mail",
+        //         },
+        //         en: {
+        //             navInicio: "Home",
+        //             navProyectos: "Projects",
+        //             navHabilidades: "Skills",
+        //             navContacto: "Contact",
+        //             heroTitle: "Hello, I'm Jesús Millán,<br>Full-Stack Developer.",
+        //             heroSubtitle: "Transforming ideas into robust and scalable digital experiences.",
+        //             heroButton: "View My Projects",
+        //             projectsTitle: "Featured Projects",
+        //             projectsSubtitle: "Here I showcase some of the challenges I've solved, focusing on the problem, the solution, and the resulting business impact.",
+        //             project1Title: "Real-Time Audit Platform",
+        //             project1Desc: "Web application to optimize the scheduling and execution of internal audits, delivering indicators to management on the same day.",
+        //             project2Title: "QA Platform for Insurance Sales",
+        //             project2Desc: "Web system to audit sales calls, automating critical alerts and generating effectiveness reports for management.",
+        //             project3Title: "Evolutionary Maintenance of Government ERP",
+        //             project3Desc: "Responsible for bug fixing and workflow adaptation in a large-scale monolithic system for a fiscal control entity.",
+        //             skillsTitle: "From Idea to Launch",
+        //             skillsSubtitle: "More than a programmer, I'm a technology partner. My goal is to support you through every phase of the project to turn your vision into a successful digital reality.",
+        //             skillCard1Title: "1. Strategy & Design",
+        //             skillCard1Desc: "Every great product begins with a solid plan. I help define the structure and user experience to lay the foundations for success.",
+        //             skillPillUX: "UX/UI Prototyping",
+        //             skillPillArch: "Software Architecture",
+        //             skillCard2Title: "2. Frontend Development",
+        //             skillCard2Desc: "I build fast, interactive, and accessible interfaces that your users will love, fully adapted to any device.",
+        //             skillCard3Title: "3. Backend & Data",
+        //             skillCard3Desc: "I develop the business logic and secure, scalable databases that bring the application to life and protect your information.",
+        //             contactTitle: "Contact",
+        //             contactSubtitle: "Let's talk. I'm available for new projects and opportunities.",
+        //             contactButton: "Send me an Email",
+        //         }
+        //     };
+
+        //     const languageButtons = document.querySelectorAll('.lang-btn');
+
+        //     function changeLanguage(lang) {
+        //         // Actualiza todos los elementos que tengan el atributo data-translate
+        //         document.querySelectorAll('[data-translate]').forEach(element => {
+        //             const key = element.getAttribute('data-translate');
+        //             if (translations[lang][key]) {
+        //                 element.innerHTML = translations[lang][key];
+        //             }
+        //         });
+
+        //         // Actualiza el estilo de los botones
+        //         languageButtons.forEach(button => {
+        //             if (button.getAttribute('data-lang') === lang) {
+        //                 button.classList.remove('text-slate-400');
+        //                 button.classList.add('text-blue-600', 'font-bold');
+        //             } else {
+        //                 button.classList.add('text-slate-400');
+        //                 button.classList.remove('text-blue-600', 'font-bold');
+        //             }
+        //         });
+        //     }
+
+        //     // Asigna el evento de clic a cada botón
+        //     languageButtons.forEach(button => {
+        //         button.addEventListener('click', () => {
+        //             const lang = button.getAttribute('data-lang');
+        //             changeLanguage(lang);
+        //         });
+        //     });
+
+        //     // Establece un idioma por defecto al cargar la página
+        //     changeLanguage('pt');
+        
+        // });
+    </script>
+
+</body>
+</html>
