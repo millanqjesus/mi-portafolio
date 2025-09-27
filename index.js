@@ -1,109 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const translations = {
-        es: {
-            // Navegación
-            navInicio: "Inicio",
-            navProyectos: "Proyectos",
-            navHabilidades: "Habilidades",
-            navContacto: "Contacto",
-            // Hero Section
-            heroTitle: "Hola, soy Jesús Millán,<br>Desarrollador Full-Stack.",
-            heroSubtitle: "Transformando ideas en experiencias digitales robustas y escalables.",
-            heroButton: "Ver Mis Proyectos",
-            // Proyectos
-            proyectosTitle: "Proyectos Destacados",
-            proyectosSubtitle: "Aquí presento algunos de los desafíos que he resuelto, enfocándome en el problema, la solución y el impacto generado para el negocio.",
-            project1Title: "Plataforma de Auditorías en Tiempo Real",
-            project1Desc: "Aplicación web para optimizar la programación y ejecución de auditorías internas, entregando indicadores a la dirección el mismo día.",
-            project2Title: "Plataforma de QA para Ventas de Seguros",
-            project2Desc: "Sistema web para auditar llamadas de ventas, automatizando alertas críticas y generando reportes de efectividad para la gerencia.",
-            project3Title: "Mantenimiento Evolutivo de ERP Gubernamental",
-            project3Desc: "Responsable de la corrección de bugs y adaptación de flujos de trabajo en un sistema monolítico a gran escala para una entidad de control fiscal.",
-            // Habilidades
-            skillsTitle: "De la Idea al Lanzamiento",
-            skillsSubtitle: "Más que un programador, soy un socio tecnológico. Mi objetivo es acompañarte en cada fase del proyecto para convertir tu visión en una realidad digital exitosa.",
-            skillCard1Title: "1. Estrategia y Diseño",
-            skillCard1Desc: "Todo gran producto empieza con un plan sólido. Te ayudo a definir la estructura y la experiencia de usuario para sentar las bases del éxito.",
-            skillPillUX: "UX/UI Prototyping",
-            skillPillArch: "Arquitectura de Software",
-            skillCard2Title: "2. Desarrollo Frontend",
-            skillCard2Desc: "Construyo interfaces rápidas, interactivas y accesibles que tus usuarios amarán, totalmente adaptadas a cualquier dispositivo.",
-            skillCard3Title: "3. Backend y Datos",
-            skillCard3Desc: "Desarrollo la lógica de negocio y las bases de datos seguras y escalables que dan vida a la aplicación y protegen tu información.",
-            // Contacto
-            contactTitle: "Contacto",
-            contactSubtitle: "Hablemos. Estoy disponible para nuevos proyectos y oportunidades.",
-            contactButton: "Envíame un Email",
-            contactButtonWP: "Escríbeme en WhatsApp",
-            whatsappMessage: "Hola, vi tu portfolio y me gustaría conversar.",
-        },
-        pt: {
-            navInicio: "Início",
-            navProyectos: "Projetos",
-            navHabilidades: "Habilidades",
-            navContacto: "Contato",
-            heroTitle: "Olá, eu sou Jesús Millán,<br>Desenvolvedor Full-Stack.",
-            heroSubtitle: "Transformando ideias em experiências digitais robustas e escaláveis.",
-            heroButton: "Ver Meus Projetos",
-            proyectosTitle: "Projetos em Destaque",
-            proyectosSubtitle: "Aqui apresento alguns dos desafios que resolvi, focando no problema, na solução e no impacto gerado para o negócio.",
-            project1Title: "Plataforma de Auditorias em Tempo Real",
-            project1Desc: "Aplicação web para otimizar o agendamento e a execução de auditorias internas, entregando indicadores à gerência no mesmo dia.",
-            project2Title: "Plataforma de QA para Vendas de Seguros",
-            project2Desc: "Sistema web para auditar chamadas de vendas, automatizando alertas críticos e gerando relatórios de eficácia para a gerência.",
-            project3Title: "Manutenção Evolutiva de ERP Governamental",
-            project3Desc: "Responsável pela correção de bugs e adaptação de fluxos de trabalho em um sistema monolítico de grande escala para uma entidade de controle fiscal.",
-            skillsTitle: "Da Ideia ao Lançamento",
-            skillsSubtitle: "Mais que um programador, sou um parceiro de tecnologia. Meu objetivo é acompanhar você em cada fase do projeto para transformar sua visão em uma realidade digital de sucesso.",
-            skillCard1Title: "1. Estratégia e Design",
-            skillCard1Desc: "Todo grande produto começa com um plano sólido. Eu ajudo a definir a estrutura e a experiência do usuário para estabelecer as bases para o sucesso.",
-            skillPillUX: "Prototipagem UX/UI",
-            skillPillArch: "Arquitetura de Software",
-            skillCard2Title: "2. Desenvolvimento Frontend",
-            skillCard2Desc: "Construo interfaces rápidas, interativas e acessíveis que seus usuários vão adorar, totalmente adaptadas a qualquer dispositivo.",
-            skillCard3Title: "3. Backend e Dados",
-            skillCard3Desc: "Desenvolvo a lógica de negócio e os bancos de dados seguros e escaláveis que dão vida à aplicação e protegem suas informações.",
-            contactTitle: "Contato",
-            contactSubtitle: "Vamos conversar. Estou disponível para novos projetos e oportunidades.",
-            contactButton: "Envie-me um E-mail",
-            contactButtonWP: "Escreva-me no WhatsApp",
-            whatsappMessage: "Olá, vi seu portfólio e gostaria de conversar.",
-        },
-        en: {
-            navInicio: "Home",
-            navProyectos: "Projects",
-            navHabilidades: "Skills",
-            navContacto: "Contact",
-            heroTitle: "Hello, I'm Jesús Millán,<br>Full-Stack Developer.",
-            heroSubtitle: "Transforming ideas into robust and scalable digital experiences.",
-            heroButton: "View My Projects",
-            projectsTitle: "Featured Projects",
-            projectsSubtitle: "Here I showcase some of the challenges I've solved, focusing on the problem, the solution, and the resulting business impact.",
-            project1Title: "Real-Time Audit Platform",
-            project1Desc: "Web application to optimize the scheduling and execution of internal audits, delivering indicators to management on the same day.",
-            project2Title: "QA Platform for Insurance Sales",
-            project2Desc: "Web system to audit sales calls, automating critical alerts and generating effectiveness reports for management.",
-            project3Title: "Evolutionary Maintenance of Government ERP",
-            project3Desc: "Responsible for bug fixing and workflow adaptation in a large-scale monolithic system for a fiscal control entity.",
-            skillsTitle: "From Idea to Launch",
-            skillsSubtitle: "More than a programmer, I'm a technology partner. My goal is to support you through every phase of the project to turn your vision into a successful digital reality.",
-            skillCard1Title: "1. Strategy & Design",
-            skillCard1Desc: "Every great product begins with a solid plan. I help define the structure and user experience to lay the foundations for success.",
-            skillPillUX: "UX/UI Prototyping",
-            skillPillArch: "Software Architecture",
-            skillCard2Title: "2. Frontend Development",
-            skillCard2Desc: "I build fast, interactive, and accessible interfaces that your users will love, fully adapted to any device.",
-            skillCard3Title: "3. Backend & Data",
-            skillCard3Desc: "I develop the business logic and secure, scalable databases that bring the application to life and protect your information.",
-            contactTitle: "Contact",
-            contactSubtitle: "Let's talk. I'm available for new projects and opportunities.",
-            contactButton: "Send me an Email",
-            contactButtonWP: "Message me on WhatsApp",
-            whatsappMessage: "Hello, I saw your portfolio and I'd like to chat.",
-        }
-    };
-
     const languageButtons = document.querySelectorAll('.lang-btn');
 
     function changeLanguage(lang) {
@@ -118,11 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Actualiza el estilo de los botones
         languageButtons.forEach(button => {
             if (button.getAttribute('data-lang') === lang) {
-                button.classList.remove('text-slate-400');
-                button.classList.add('text-blue-600', 'font-bold');
+                // Estilos para el botón ACTIVO
+                button.classList.remove('text-slate-400', 'dark:text-slate-400');
+                button.classList.add('text-blue-600', 'dark:text-blue-500', 'font-bold');
             } else {
-                button.classList.add('text-slate-400');
-                button.classList.remove('text-blue-600', 'font-bold');
+                // Estilos para los botones INACTIVOS
+                button.classList.add('text-slate-400', 'dark:text-white');
+                button.classList.remove('text-blue-600', 'dark:text-blue-500', 'font-bold');
             }
         });
 
@@ -151,4 +49,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Establece un idioma por defecto al cargar la página
     changeLanguage('pt');
 
+});
+
+// Iconos
+const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+// Comprobar el tema guardado en localStorage o el preferido por el sistema
+if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    themeToggleLightIcon.classList.remove('hidden');
+    themeToggleDarkIcon.classList.add('hidden');
+} else {
+    document.documentElement.classList.remove('dark');
+    themeToggleLightIcon.classList.add('hidden');
+    themeToggleDarkIcon.classList.remove('hidden');
+}
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+themeToggleBtn.addEventListener('click', function() {
+    // Alternar iconos
+    themeToggleDarkIcon.classList.toggle('hidden');
+    themeToggleLightIcon.classList.toggle('hidden');
+
+    // Si el tema ya está guardado, lo cambiamos. Si no, lo guardamos por primera vez
+    if (localStorage.getItem('color-theme')) {
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        }
+    } else {
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+    }
 });
