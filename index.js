@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageButtons = document.querySelectorAll('.lang-btn');
 
     function changeLanguage(lang) {
-        // Actualiza todos los elementos que tengan el atributo data-translate
+        // 1. Actualiza todos los textos de la página
         document.querySelectorAll('[data-translate]').forEach(element => {
             const key = element.getAttribute('data-translate');
             if (translations[lang][key]) {
@@ -11,31 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Actualiza el estilo de los botones
-        languageButtons.forEach(button => {
-            if (button.getAttribute('data-lang') === lang) {
-                // Estilos para el botón ACTIVO
-                button.classList.remove('text-slate-400', 'dark:text-slate-400');
-                button.classList.add('text-blue-600', 'dark:text-blue-500', 'font-bold');
-            } else {
-                // Estilos para los botones INACTIVOS
-                button.classList.add('text-slate-400', 'dark:text-white');
-                button.classList.remove('text-blue-600', 'dark:text-blue-500', 'font-bold');
-            }
-        });
-
-        // --- Lógica nueva para el enlace de WhatsApp ---
-        const baseWhatsAppURL = "https://wa.me/+5553999763097"; // Usa tu número aquí
+        // 2. Actualiza el enlace de WhatsApp dinámicamente
+        const baseWhatsAppURL = "https://wa.me/TUNUMEROINTERNACIONAL"; // Usa tu número aquí
         const rawMessage = translations[lang].whatsappMessage;
-        const encodedMessage = encodeURIComponent(rawMessage); // Codifica el mensaje para la URL
-        
+        const encodedMessage = encodeURIComponent(rawMessage);
         const finalWhatsAppURL = `${baseWhatsAppURL}?text=${encodedMessage}`;
-
-        // Actualiza el 'href' del botón
         const whatsappButton = document.querySelector('#whatsapp-btn');
         if (whatsappButton) {
             whatsappButton.href = finalWhatsAppURL;
         }
+
+        // 3. Actualiza el estilo de los botones de idioma (LA PARTE CORREGIDA)
+        const languageButtons = document.querySelectorAll('.lang-btn');
+        languageButtons.forEach(button => {
+            if (button.getAttribute('data-lang') === lang) {
+                // Estilos para el botón ACTIVO (ahora incluye dark:)
+                button.classList.remove('text-slate-400', 'dark:text-slate-400', 'dark:text-white');
+                button.classList.add('text-blue-600', 'dark:text-blue-500', 'font-bold');
+            } else {
+                // Estilos para los botones INACTIVOS (ahora incluye dark:)
+                button.classList.add('text-slate-400', 'dark:text-slate-400', 'dark:text-white');
+                button.classList.remove('text-blue-600', 'dark:text-blue-500', 'font-bold');
+            }
+        });
     }
 
     // Asigna el evento de clic a cada botón
