@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" class="light"> <!-- Estado inicial del tema -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: CRUD con Supabase</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Tailwind -->
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Habilita el modo oscuro
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              display: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Font Awesome (para iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- DataTables.js (con jQuery) y Estilos para Tailwind -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.tailwindcss.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.tailwindcss.min.css">
+    
+    <style>
+        /* Estilos personalizados para la modal */
+        .modal { transition: opacity 0.25s ease; }
+        .modal-active { opacity: 1; pointer-events: auto; }
+
+        /* === ESTILOS MINIMALISTAS PARA DATATABLE === */
+        /* Ocultar el buscador y el selector de "mostrar X entradas" */
+        .dataTables_wrapper .dataTables_filter,
+        .dataTables_wrapper .dataTables_length {
+            display: none;
+        }
+        /* Estilo general para la tabla */
+        #personasTable {
+            border: none;
+        }
+        #personasTable thead {
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .dark #personasTable thead {
+            border-bottom: 1px solid #334155;
+        }
+        #personasTable th {
+            font-weight: 600;
+        }
+        #personasTable td {
+            border: none;
+        }
+        /* Simplificar paginación e info */
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate {
+            padding-top: 1.5rem;
+            color: #64748b;
+        }
+        .dark .dataTables_wrapper .dataTables_info {
+            color: #94a3b8;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            background: transparent !important;
+            border: 1px solid transparent !important;
+            border-radius: 0.375rem;
+            margin: 0 0.25rem;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #eef2ff !important;
+            color: #4f46e5 !important;
+        }
+        .dark .dataTables_wrapper .dataTables_paginate .paginate_button {
+            color: #94a3b8 !important;
+        }
+        .dark .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #374151 !important;
+            color: #e5e7eb !important;
+        }
+        .dark .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dark .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: #3730a3 !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+
+    <!-- Header (Igual al del portafolio) -->
+    <header class="bg-white/80 backdrop-blur-sm shadow-md w-full z-50 dark:bg-slate-800/80 dark:shadow-lg dark:shadow-slate-900/50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../index.html" class="font-display text-2xl font-bold text-slate-900 dark:text-white">Jesús Millán</a>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" type="button" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-500">
+                    <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
+                    <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+                </button>
+                <button data-lang="es" class="lang-btn font-medium text-sm hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">ES</button>
+                <button data-lang="pt" class="lang-btn font-medium text-sm hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">PT</button>
+                <button data-lang="en" class="lang-btn font-medium text-sm hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal de la Demo -->
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8 pt-24">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+            <div>
+                <h1 data-translate="demoTitle" class="text-3xl font-bold text-slate-900 dark:text-white"></h1>
+                <p data-translate="demoSubtitle" class="text-slate-600 dark:text-slate-400 mt-1"></p>
+            </div>
+            <button id="openModalBtn" data-translate="addPersonBtn" class="mt-4 sm:mt-0 w-full sm:w-auto inline-flex items-center justify-center bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+            </button>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md overflow-x-auto">
+            <table id="personasTable" class="display text-slate-800 dark:text-slate-200" style="width:100%">
+                <thead>
+                    <tr>
+                        <th data-translate="colName"></th>
+                        <th data-translate="colSurname"></th>
+                        <th data-translate="colEmail"></th>
+                        <th data-translate="colBirthdate"></th>
+                        <th data-translate="colActions"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Modal para Agregar/Editar Persona -->
+    <div id="personaModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 pointer-events-none">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-70"></div>
+        <div class="modal-container bg-white dark:bg-slate-800 w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+            <div class="modal-content py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3">
+                    <p id="modalTitle" data-translate="modalAddTitle" class="text-2xl font-bold text-slate-900 dark:text-white"></p>
+                    <button class="modal-close cursor-pointer z-50"><i class="fas fa-times text-2xl text-gray-500 dark:text-gray-400"></i></button>
+                </div>
+                <form id="personaForm">
+                    <input type="hidden" id="personaId">
+                    <div class="mb-4"><label for="name" data-translate="formName" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2"></label><input type="text" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 leading-tight focus:outline-none focus:shadow-outline" required></div>
+                    <div class="mb-4"><label for="surname" data-translate="formSurname" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2"></label><input type="text" id="surname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 leading-tight focus:outline-none focus:shadow-outline" required></div>
+                    <div class="mb-4"><label for="email" data-translate="formEmail" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2"></label><input type="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 leading-tight focus:outline-none focus:shadow-outline" required></div>
+                    <div class="mb-4"><label for="birthdate" data-translate="formBirthdate" class="block text-gray-700 dark:text-slate-300 text-sm font-bold mb-2"></label><input type="date" id="birthdate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 leading-tight focus:outline-none focus:shadow-outline" required></div>
+                    <div class="flex justify-end pt-2">
+                        <button type="button" class="modal-close px-4 bg-transparent p-3 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700 dark:text-slate-400 mr-2" data-translate="btnCancel"></button>
+                        <button type="submit" class="px-4 bg-blue-600 p-3 rounded-lg text-white hover:bg-blue-700" data-translate="btnSave"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- SweetAlert2 (NUEVO) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="../../index.js?v=1.1"></script>
+    <script src="./demo-superbase.js?v=1.0"></script>
+
+</body>
+</html>
