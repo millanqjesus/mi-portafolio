@@ -35,6 +35,10 @@ const translations = {
             contactButton: "Envíame un Email",
             contactButtonWP: "Escríbeme en WhatsApp",
             whatsappMessage: "Hola, vi tu portfolio y me gustaría conversar.",
+            // footer
+            footerEmail: "Email: millanqjesus@gmail.com",
+            footerCNPJ: "CNPJ: 62.019.664/0001-50",
+            footerRights: "© 2025 Jesús Millán. Todos los derechos reservados.",
         },
         pt: {
             navInicio: "Início",
@@ -67,6 +71,9 @@ const translations = {
             contactButton: "Envie-me um E-mail",
             contactButtonWP: "Escreva-me no WhatsApp",
             whatsappMessage: "Olá, vi seu portfólio e gostaria de conversar.",
+            footerEmail: "E-mail: millanqjesus@gmail.com",
+            footerCNPJ: "CNPJ: 62.019.664/0001-50",
+            footerRights: "© 2025 Jesús Millán. Todos os direitos reservados.",
         },
         en: {
             navInicio: "Home",
@@ -99,5 +106,8 @@ const translations = {
             contactButton: "Send me an Email",
             contactButtonWP: "Message me on WhatsApp",
             whatsappMessage: "Hello, I saw your portfolio and I'd like to chat.",
+            footerEmail: "Email: millanqjesus@gmail.com",
+            footerCNPJ: "CNPJ: 62.019.664/0001-50",
+            footerRights: "© 2025 Jesús Millán. All rights reserved.",
         }
     };
