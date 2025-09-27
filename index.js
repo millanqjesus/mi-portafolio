@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             contactTitle: "Contacto",
             contactSubtitle: "Hablemos. Estoy disponible para nuevos proyectos y oportunidades.",
             contactButton: "Envíame un Email",
+            contactButtonWP: "Escríbeme en WhatsApp",
+            whatsappMessage: "Hola, vi tu portfolio y me gustaría conversar.",
         },
         pt: {
             navInicio: "Início",
@@ -65,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             contactTitle: "Contato",
             contactSubtitle: "Vamos conversar. Estou disponível para novos projetos e oportunidades.",
             contactButton: "Envie-me um E-mail",
+            contactButtonWP: "Escreva-me no WhatsApp",
+            whatsappMessage: "Olá, vi seu portfólio e gostaria de conversar.",
         },
         en: {
             navInicio: "Home",
@@ -95,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
             contactTitle: "Contact",
             contactSubtitle: "Let's talk. I'm available for new projects and opportunities.",
             contactButton: "Send me an Email",
+            contactButtonWP: "Message me on WhatsApp",
+            whatsappMessage: "Hello, I saw your portfolio and I'd like to chat.",
         }
     };
 
@@ -119,6 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.classList.remove('text-blue-600', 'font-bold');
             }
         });
+
+        // --- Lógica nueva para el enlace de WhatsApp ---
+        const baseWhatsAppURL = "https://wa.me/+5553999763097"; // Usa tu número aquí
+        const rawMessage = translations[lang].whatsappMessage;
+        const encodedMessage = encodeURIComponent(rawMessage); // Codifica el mensaje para la URL
+        
+        const finalWhatsAppURL = `${baseWhatsAppURL}?text=${encodedMessage}`;
+
+        // Actualiza el 'href' del botón
+        const whatsappButton = document.querySelector('#whatsapp-btn');
+        if (whatsappButton) {
+            whatsappButton.href = finalWhatsAppURL;
+        }
     }
 
     // Asigna el evento de clic a cada botón
