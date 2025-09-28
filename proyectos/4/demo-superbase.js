@@ -3,9 +3,9 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // 1. Configuración del cliente de Supabase
 const translations = {
-    es: { demoTitle: "Demo: CRUD con Supabase", demoSubtitle: "Gestiona los registros de la tabla de personas.", addPersonBtn: "Agregar Persona", colName: "Nombre", colSurname: "Apellido", colEmail: "Email", colBirthdate: "Fecha Nacimiento", colActions: "Acciones", modalAddTitle: "Agregar Persona", modalEditTitle: "Editar Persona", formName: "Nombre:", formSurname: "Apellido:", formEmail: "Email:", formBirthdate: "Fecha de Nacimiento:", btnCancel: "Cancelar", btnSave: "Guardar", confirmDeleteTitle: "¿Estás seguro?", confirmDeleteText: "¡No podrás revertir esto!", btnConfirmDelete: "Sí, ¡bórralo!", btnCancelDelete: "Cancelar",swalErrorTitle: "¡Error!", swalErrorText: "No se pudo eliminar el registro.", swalDeletedTitle: "¡Eliminado!", swalDeletedText: "El registro ha sido eliminado.", },
-    pt: { demoTitle: "Demo: CRUD com Supabase", demoSubtitle: "Gerencie os registros na tabela de pessoas.", addPersonBtn: "Adicionar Pessoa", colName: "Nome", colSurname: "Sobrenome", colEmail: "E-mail", colBirthdate: "Data de Nascimento", colActions: "Ações", modalAddTitle: "Adicionar Pessoa", modalEditTitle: "Editar Pessoa", formName: "Nome:", formSurname: "Sobrenome:", formEmail: "E-mail:", formBirthdate: "Data de Nascimento:", btnCancel: "Cancelar", btnSave: "Salvar", confirmDeleteTitle: "Você tem certeza?", confirmDeleteText: "Você не podrás reverter isso!", btnConfirmDelete: "Sim, apague!", btnCancelDelete: "Cancelar", swalErrorTitle: "Erro!", swalErrorText: "Não foi possível excluir o registro.", swalDeletedTitle: "Excluído!", swalDeletedText: "O registro foi excluído com sucesso.", },
-    en: { demoTitle: "Demo: CRUD with Supabase", demoSubtitle: "Manage the records in the people table.", addPersonBtn: "Add Person", colName: "Name", colSurname: "Surname", colEmail: "Email", colBirthdate: "Birthdate", colActions: "Actions", modalAddTitle: "Add Person", modalEditTitle: "Edit Person", formName: "Name:", formSurname: "Surname:", formEmail: "Email:", formBirthdate: "Birthdate:", btnCancel: "Cancel", btnSave: "Save", confirmDeleteTitle: "Are you sure?", confirmDeleteText: "You won't be able to revert this!", btnConfirmDelete: "Yes, delete it!", btnCancelDelete: "Cancel", swalErrorTitle: "Error!", swalErrorText: "The record could not be deleted.", swalDeletedTitle: "Deleted!", swalDeletedText: "The record has been deleted.", }
+    es: { demoTitle: "Demo: CRUD con Supabase", demoSubtitle: "Gestiona los registros de la tabla de personas.", addPersonBtn: "Agregar Persona", colName: "Nombre", colSurname: "Apellido", colEmail: "Email", colSexo: "Sexo", colBirthdate: "Fecha Nacimiento", colActions: "Acciones", modalAddTitle: "Agregar Persona", modalEditTitle: "Editar Persona", formName: "Nombre:", formSurname: "Apellido:", formEmail: "Email:", formSexo: "Sexo:", formBirthdate: "Fecha de Nacimiento:", btnCancel: "Cancelar", btnSave: "Guardar", confirmDeleteTitle: "¿Estás seguro?", confirmDeleteText: "¡No podrás revertir esto!", btnConfirmDelete: "Sí, ¡bórralo!", btnCancelDelete: "Cancelar",swalErrorTitle: "¡Error!", swalErrorText: "No se pudo eliminar el registro.", swalDeletedTitle: "¡Eliminado!", swalDeletedText: "El registro ha sido eliminado.", selectOptionDefault: "Seleccione una opción", selectOptionMale: "Masculino", selectOptionFemale: "Femenino", selectOptionOther: "Otro", },
+    pt: { demoTitle: "Demo: CRUD com Supabase", demoSubtitle: "Gerencie os registros na tabela de pessoas.", addPersonBtn: "Adicionar Pessoa", colName: "Nome", colSurname: "Sobrenome", colEmail: "E-mail", colSexo: "Sexo", colBirthdate: "Data de Nascimento", colActions: "Ações", modalAddTitle: "Adicionar Pessoa", modalEditTitle: "Editar Pessoa", formName: "Nome:", formSurname: "Sobrenome:", formEmail: "E-mail:", formSexo: "Sexo:", formBirthdate: "Data de Nascimento:", btnCancel: "Cancelar", btnSave: "Salvar", confirmDeleteTitle: "Você tem certeza?", confirmDeleteText: "Você não podrás reverter isso!", btnConfirmDelete: "Sim, apague!", btnCancelDelete: "Cancelar", swalErrorTitle: "Erro!", swalErrorText: "Não foi possível excluir o registro.", swalDeletedTitle: "Excluído!", swalDeletedText: "O registro foi excluído com sucesso.", selectOptionDefault: "Selecione uma opção", selectOptionMale: "Masculino", selectOptionFemale: "Feminino", selectOptionOther: "Outro", },
+    en: { demoTitle: "Demo: CRUD with Supabase", demoSubtitle: "Manage the records in the people table.", addPersonBtn: "Add Person", colName: "Name", colSurname: "Surname", colEmail: "Email", colSexo: "Gender",colBirthdate: "Birthdate", colActions: "Actions", modalAddTitle: "Add Person", modalEditTitle: "Edit Person", formName: "Name:", formSurname: "Surname:", formEmail: "Email:", formSexo: "Gender:",  formBirthdate: "Birthdate:", btnCancel: "Cancel", btnSave: "Save", confirmDeleteTitle: "Are you sure?", confirmDeleteText: "You won't be able to revert this!", btnConfirmDelete: "Yes, delete it!", btnCancelDelete: "Cancel", swalErrorTitle: "Error!", swalErrorText: "The record could not be deleted.", swalDeletedTitle: "Deleted!", swalDeletedText: "The record has been deleted.", selectOptionDefault: "Select an option", selectOptionMale: "Male", selectOptionFemale: "Female", selectOptionOther: "Other" }
 };
 
 // === LÓGICA DE LA MODAL CORREGIDA ===
@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: document.getElementById('name').value, 
             surname: document.getElementById('surname').value, 
             email: document.getElementById('email').value, 
+            sexo: document.getElementById('sexo').value, 
             birthdate: document.getElementById('birthdate').value 
         };
 
@@ -131,7 +132,25 @@ async function loadPersonas() {
     dataTableInstance = $('#personasTable').DataTable({
         data: data,
         columns: [{ data: 'name' }, { data: 'surname' }, { data: 'email' }, 
-        // { data: 'birthdate' }, 
+        { 
+            data: 'sexo',
+            render: function(data, type, row) {
+                // Para ORDENAR (sort) o filtrar, devuelve el dato original (YYYY-MM-DD)
+                // que es naturalmente ordenable.
+                if (type === 'sort' || type === 'filter') {
+                    return data;
+                }
+
+                // Para MOSTRAR (display), formatea la fecha como DD/MM/YYYY
+                if (data) {
+                    const sexo = parseInt(data);
+                    if (sexo === 1) return translations[currentLanguage].selectOptionFemale;
+                    if (sexo === 2) return translations[currentLanguage].selectOptionMale;
+                    if (sexo === 3) return translations[currentLanguage].selectOptionOther;
+                }
+                return '';
+            }
+        },
         { 
             data: 'birthdate',
             render: function(data, type, row) {
@@ -200,6 +219,7 @@ window.editPersona = async (id) => {
     document.getElementById('name').value = data.name;
     document.getElementById('surname').value = data.surname;
     document.getElementById('email').value = data.email;
+    document.getElementById('sexo').value = data.sexo;
     document.getElementById('birthdate').value = data.birthdate;
     document.getElementById('modalTitle').setAttribute('data-translate', 'modalEditTitle');
     modal.classList.add('modal-active');
