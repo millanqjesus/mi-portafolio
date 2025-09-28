@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" class="light"> <!-- Estado inicial del tema -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página no encontrada</title>
+
+    <!-- Ruta relativa para encontrar el favicon desde la raíz -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Tailwind -->
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Habilita el modo oscuro
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Montserrat', 'sans-serif'],
+              display: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (para iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+
+    <!-- Header (Igual al del portafolio) -->
+    <header class="bg-white/80 backdrop-blur-sm shadow-md fixed w-full z-50 dark:bg-slate-800/80 dark:shadow-lg dark:shadow-slate-900/50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- El enlace apunta a la raíz del sitio -->
+            <a href="/" class="font-display text-2xl font-bold text-slate-900 dark:text-white">Jesús Millán</a>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" type="button" class="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-500">
+                    <i id="theme-toggle-dark-icon" class="fas fa-moon"></i>
+                    <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+                </button>
+                <button data-lang="es" class="lang-btn font-medium text-sm hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">ES</button>
+                <button data-lang="pt" class="lang-btn font-medium text-sm hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">PT</button>
+                <button data-lang="en" class="lang-btn font-medium text-sm hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-300">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal que centra el contenido -->
+    <main class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+        
+        <div class="max-w-md">
+            <!-- Icono -->
+            <i class="fas fa-link-slash text-blue-600 dark:text-blue-500 text-6xl mb-6"></i>
+
+            <!-- Título principal "404" -->
+            <h1 class="font-display font-bold text-8xl md:text-9xl text-slate-900 dark:text-white">
+                404
+            </h1>
+
+            <!-- Subtítulo -->
+            <h2 data-translate="error404Title" class="font-display text-2xl md:text-3xl font-semibold mt-4 text-slate-800 dark:text-slate-200"></h2>
+
+            <!-- Descripción -->
+            <p data-translate="error404Desc" class="mt-4 text-slate-600 dark:text-slate-400"></p>
+
+            <!-- Botón para volver al inicio -->
+            <a href="/" data-translate="error404Button" class="mt-8 inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-blue-700 hover:scale-105"></a>
+        </div>
+    </main>
+
+    <!-- === SCRIPTS === -->
+    <script>
+        // --- LÓGICA DEL TEMA OSCURO ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            if(themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+            if(themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') { document.documentElement.classList.add('dark'); localStorage.setItem('color-theme', 'dark'); }
+                else { document.documentElement.classList.remove('dark'); localStorage.setItem('color-theme', 'light'); }
+            } else {
+                if (document.documentElement.classList.contains('dark')) { document.documentElement.classList.remove('dark'); localStorage.setItem('color-theme', 'light'); }
+                else { document.documentElement.classList.add('dark'); localStorage.setItem('color-theme', 'dark'); }
+            }
+        });
+
+        // --- LÓGICA DE TRADUCCIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                es: { error404Title: "Página no encontrada", error404Desc: "Lo sentimos, la página que buscas no existe o ha sido movida.", error404Button: "Volver al Inicio" },
+                pt: { error404Title: "Página não encontrada", error404Desc: "Desculpe, a página que você procura não existe ou foi movida.", error404Button: "Voltar ao Início" },
+                en: { error404Title: "Page Not Found", error404Desc: "Sorry, the page you are looking for does not exist or has been moved.", error404Button: "Back to Home" }
+            };
+
+            let currentLanguage = 'es';
+            const languageButtons = document.querySelectorAll('.lang-btn');
+            function changeLanguage(lang) {
+                currentLanguage = lang;
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+                languageButtons.forEach(btn => {
+                    if (btn.getAttribute('data-lang') === lang) {
+                        btn.classList.remove('text-slate-400', 'dark:text-slate-400');
+                        btn.classList.add('text-blue-600', 'dark:text-blue-500', 'font-bold');
+                    } else {
+                        btn.classList.add('text-slate-400', 'dark:text-slate-400');
+                        btn.classList.remove('text-blue-600', 'dark:text-blue-500', 'font-bold');
+                    }
+                });
+            }
+
+            languageButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    changeLanguage(btn.getAttribute('data-lang'));
+                });
+            });
+
+            // Carga inicial del idioma
+            changeLanguage(currentLanguage);
+        });
+    </script>
+</body>
+</html>
