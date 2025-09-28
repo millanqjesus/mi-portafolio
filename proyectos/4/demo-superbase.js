@@ -1,3 +1,6 @@
+const SUPABASE_URL = 'https://ggofsjnazivibelygyxo.supabase.co'; 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnb2Zzam5heml2aWJlbHlneXhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg5NzQwNzAsImV4cCI6MjA3NDU1MDA3MH0.Jhcs2N489ceM0xD_AtvgxzbnvKx8jTEfpuE2h4FshSU';
+
 // 1. Configuración del cliente de Supabase
 const translations = {
     es: { demoTitle: "Demo: CRUD con Supabase", demoSubtitle: "Gestiona los registros de la tabla de personas.", addPersonBtn: "Agregar Persona", colName: "Nombre", colSurname: "Apellido", colEmail: "Email", colBirthdate: "Fecha Nacimiento", colActions: "Acciones", modalAddTitle: "Agregar Persona", modalEditTitle: "Editar Persona", formName: "Nombre:", formSurname: "Apellido:", formEmail: "Email:", formBirthdate: "Fecha de Nacimiento:", btnCancel: "Cancelar", btnSave: "Guardar", confirmDeleteTitle: "¿Estás seguro?", confirmDeleteText: "¡No podrás revertir esto!", btnConfirmDelete: "Sí, ¡bórralo!", btnCancelDelete: "Cancelar",swalErrorTitle: "¡Error!", swalErrorText: "No se pudo eliminar el registro.", swalDeletedTitle: "¡Eliminado!", swalDeletedText: "El registro ha sido eliminado.", },
@@ -11,8 +14,52 @@ const openModalBtn      = document.getElementById('openModalBtn');
 const closeModalBtns    = document.querySelectorAll('.modal-close');
 const modalOverlay      = document.querySelector('.modal-overlay');
 
+let currentLanguage = 'pt';
+
+// A CORREÇÃO ESTÁ AQUI: Criamos um cliente com um nome único
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 // Lo añadimos dentro del listener que ya tienes para que no haya conflictos
 document.addEventListener('DOMContentLoaded', () => {
+
+    const languageButtons = document.querySelectorAll('.lang-btn');
+
+    function changeLanguage(lang) {
+        // 1. Actualiza todos los textos de la página
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
+        });
+
+        // 3. Actualiza el estilo de los botones de idioma (LA PARTE CORREGIDA)
+        const languageButtons = document.querySelectorAll('.lang-btn');
+        languageButtons.forEach(button => {
+            currentLanguage = lang;
+            if (button.getAttribute('data-lang') === lang) {
+                // Estilos para el botón ACTIVO (ahora incluye dark:)
+                button.classList.remove('text-slate-400', 'dark:text-slate-400', 'dark:text-white');
+                button.classList.add('text-blue-600', 'dark:text-blue-500', 'font-bold');
+            } else {
+                // Estilos para los botones INACTIVOS (ahora incluye dark:)
+                button.classList.add('text-slate-400', 'dark:text-slate-400', 'dark:text-white');
+                button.classList.remove('text-blue-600', 'dark:text-blue-500', 'font-bold');
+            }
+        });
+    }
+
+    // Asigna el evento de clic a cada botón
+    languageButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const lang = button.getAttribute('data-lang');
+            changeLanguage(lang);
+        });
+    });
+
+    // Establece un idioma por defecto al cargar la página
+    changeLanguage('pt');
+
     // Aquí ya están tus otras funciones de traducción, tema oscuro, etc.
     // Carga inicial
     loadPersonas();
@@ -167,3 +214,46 @@ let revertirRegistros = async () => {
     .update({ deleted_at: null, updated_at: new Date().toISOString() })
     .not('deleted_at', 'is', null);
 }
+
+
+// Iconos
+const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+// Comprobar el tema guardado en localStorage o el preferido por el sistema
+if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    themeToggleLightIcon.classList.remove('hidden');
+    themeToggleDarkIcon.classList.add('hidden');
+} else {
+    document.documentElement.classList.remove('dark');
+    themeToggleLightIcon.classList.add('hidden');
+    themeToggleDarkIcon.classList.remove('hidden');
+}
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+themeToggleBtn.addEventListener('click', function() {
+    // Alternar iconos
+    themeToggleDarkIcon.classList.toggle('hidden');
+    themeToggleLightIcon.classList.toggle('hidden');
+
+    // Si el tema ya está guardado, lo cambiamos. Si no, lo guardamos por primera vez
+    if (localStorage.getItem('color-theme')) {
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        }
+    } else {
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+        }
+    }
+});

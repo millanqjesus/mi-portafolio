@@ -3,8 +3,6 @@
 const SUPABASE_URL = 'https://ggofsjnazivibelygyxo.supabase.co'; 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdnb2Zzam5heml2aWJlbHlneXhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg5NzQwNzAsImV4cCI6MjA3NDU1MDA3MH0.Jhcs2N489ceM0xD_AtvgxzbnvKx8jTEfpuE2h4FshSU';
 
-// A CORREÇÃO ESTÁ AQUI: Criamos um cliente com um nome único
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 let currentLanguage = 'pt';
 
@@ -22,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // 2. Actualiza el enlace de WhatsApp dinámicamente
-        const baseWhatsAppURL = "https://wa.me/TUNUMEROINTERNACIONAL"; // Usa tu número aquí
+        const baseWhatsAppURL = "https://wa.me/+5553999763097"; // Usa tu número aquí
         const rawMessage = translations[lang].whatsappMessage;
         const encodedMessage = encodeURIComponent(rawMessage);
         const finalWhatsAppURL = `${baseWhatsAppURL}?text=${encodedMessage}`;
