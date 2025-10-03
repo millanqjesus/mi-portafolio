@@ -3,9 +3,150 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // 1. Configuración del cliente de Supabase
 const translations = {
-    es: { demoTitle: "Demo: CRUD con Supabase", demoSubtitle: "Gestiona los registros de la tabla de personas.", addPersonBtn: "Agregar Persona", colName: "Nombre", colSurname: "Apellido", colEmail: "Email", colSexo: "Sexo", colBirthdate: "Fecha Nacimiento", colActions: "Acciones", modalAddTitle: "Agregar Persona", modalEditTitle: "Editar Persona", formName: "Nombre:", formSurname: "Apellido:", formEmail: "Email:", formSexo: "Sexo:", formBirthdate: "Fecha de Nacimiento:", btnCancel: "Cancelar", btnSave: "Guardar", confirmDeleteTitle: "¿Estás seguro?", confirmDeleteText: "¡No podrás revertir esto!", btnConfirmDelete: "Sí, ¡bórralo!", btnCancelDelete: "Cancelar",swalErrorTitle: "¡Error!", swalErrorText: "No se pudo eliminar el registro.", swalDeletedTitle: "¡Eliminado!", swalDeletedText: "El registro ha sido eliminado.", selectOptionDefault: "Seleccione una opción", selectOptionMale: "Masculino", selectOptionFemale: "Femenino", selectOptionOther: "Otro", },
-    pt: { demoTitle: "Demo: CRUD com Supabase", demoSubtitle: "Gerencie os registros na tabela de pessoas.", addPersonBtn: "Adicionar Pessoa", colName: "Nome", colSurname: "Sobrenome", colEmail: "E-mail", colSexo: "Sexo", colBirthdate: "Data de Nascimento", colActions: "Ações", modalAddTitle: "Adicionar Pessoa", modalEditTitle: "Editar Pessoa", formName: "Nome:", formSurname: "Sobrenome:", formEmail: "E-mail:", formSexo: "Sexo:", formBirthdate: "Data de Nascimento:", btnCancel: "Cancelar", btnSave: "Salvar", confirmDeleteTitle: "Você tem certeza?", confirmDeleteText: "Você não podrás reverter isso!", btnConfirmDelete: "Sim, apague!", btnCancelDelete: "Cancelar", swalErrorTitle: "Erro!", swalErrorText: "Não foi possível excluir o registro.", swalDeletedTitle: "Excluído!", swalDeletedText: "O registro foi excluído com sucesso.", selectOptionDefault: "Selecione uma opção", selectOptionMale: "Masculino", selectOptionFemale: "Feminino", selectOptionOther: "Outro", },
-    en: { demoTitle: "Demo: CRUD with Supabase", demoSubtitle: "Manage the records in the people table.", addPersonBtn: "Add Person", colName: "Name", colSurname: "Surname", colEmail: "Email", colSexo: "Gender",colBirthdate: "Birthdate", colActions: "Actions", modalAddTitle: "Add Person", modalEditTitle: "Edit Person", formName: "Name:", formSurname: "Surname:", formEmail: "Email:", formSexo: "Gender:",  formBirthdate: "Birthdate:", btnCancel: "Cancel", btnSave: "Save", confirmDeleteTitle: "Are you sure?", confirmDeleteText: "You won't be able to revert this!", btnConfirmDelete: "Yes, delete it!", btnCancelDelete: "Cancel", swalErrorTitle: "Error!", swalErrorText: "The record could not be deleted.", swalDeletedTitle: "Deleted!", swalDeletedText: "The record has been deleted.", selectOptionDefault: "Select an option", selectOptionMale: "Male", selectOptionFemale: "Female", selectOptionOther: "Other" }
+    es: {
+        demoTitle: "Demo: CRUD con Supabase",
+        demoSubtitle: "Gestiona los registros de la tabla de personas.",
+        addPersonBtn: "Agregar Persona",
+        colName: "Nombre",
+        colSurname: "Apellido",
+        colEmail: "Email",
+        colSexo: "Sexo",
+        colBirthdate: "Fecha Nacimiento",
+        colActions: "Acciones",
+        modalAddTitle: "Agregar Persona",
+        modalEditTitle: "Editar Persona",
+        formName: "Nombre:",
+        formSurname: "Apellido:",
+        formEmail: "Email:",
+        formSexo: "Sexo:",
+        formBirthdate: "Fecha de Nacimiento:",
+        btnCancel: "Cancelar",
+        btnSave: "Guardar",
+        confirmDeleteTitle: "¿Estás seguro?",
+        confirmDeleteText: "¡No podrás revertir esto!",
+        btnConfirmDelete: "Sí, ¡bórralo!",
+        btnCancelDelete: "Cancelar",
+        
+        // --- NUEVAS TRADUCCIONES DE MENSAJES ---
+        swalSuccessTitle: "¡Operación Exitosa!",
+        swalSuccessTextCreate: "Registro creado exitosamente.", // Actualizado
+        swalSuccessTextUpdate: "Registro actualizado exitosamente.", // Nuevo
+        
+        swalErrorTitle: "¡Ups! Algo salió mal",
+        swalErrorText: "No pudimos completar tu solicitud. Por favor, revisa tu información e inténtalo de nuevo. Si el problema persiste, contacta a soporte técnico.",
+        swalErrorTextDuplicate: "El correo electrónico ingresado ya se encuentra registrado.", // Nuevo
+        
+        swalDeletedTitle: "¡Eliminado!",
+        swalDeletedText: "El registro ha sido eliminado.",
+        
+        // CONFIRMACIÓN DE GUARDAR
+        swalConfirmTitleCreate: "¿Deseas registrar esta nueva persona?",
+        swalConfirmTitleUpdate: "¿Deseas guardar los cambios de esta persona?",
+        swalConfirmText: "Una vez confirmado, los datos serán guardados en la base de datos.",
+        swalConfirmButton: "Sí, guardar",
+        swalCancelButton: "Cancelar",
+
+        selectOptionDefault: "Seleccione una opción",
+        selectOptionMale: "Masculino",
+        selectOptionFemale: "Femenino",
+        selectOptionOther: "Otro",
+    },
+    pt: {
+        demoTitle: "Demo: CRUD com Supabase",
+        demoSubtitle: "Gerencie os registros na tabela de pessoas.",
+        addPersonBtn: "Adicionar Pessoa",
+        colName: "Nome",
+        colSurname: "Sobrenome",
+        colEmail: "E-mail",
+        colSexo: "Sexo",
+        colBirthdate: "Data de Nascimento",
+        colActions: "Ações",
+        modalAddTitle: "Adicionar Pessoa",
+        modalEditTitle: "Editar Pessoa",
+        formName: "Nome:",
+        formSurname: "Sobrenome:",
+        formEmail: "E-mail:",
+        formSexo: "Sexo:",
+        formBirthdate: "Data de Nascimento:",
+        btnCancel: "Cancelar",
+        btnSave: "Salvar",
+        confirmDeleteTitle: "Você tem certeza?",
+        confirmDeleteText: "Você não podrás reverter isso!",
+        btnConfirmDelete: "Sim, apague!",
+        btnCancelDelete: "Cancelar",
+        
+        // --- NOVAS TRADUÇÕES DE MENSAGENS ---
+        swalSuccessTitle: "Operação Bem-sucedida!",
+        swalSuccessTextCreate: "Registro criado com sucesso.", // Actualizado
+        swalSuccessTextUpdate: "Registro atualizado com sucesso.", // Nuevo
+        
+        swalErrorTitle: "Ops! Algo deu errado",
+        swalErrorText: "Não conseguimos concluir sua solicitação. Por favor, verifique suas informações e tente novamente. Se o problema persistir, entre em contato com o suporte técnico.",
+        swalErrorTextDuplicate: "O email inserido já está cadastrado.", // Nuevo
+        
+        swalDeletedTitle: "Excluído!",
+        swalDeletedText: "O registro foi excluído com sucesso.",
+        
+        // CONFIRMAÇÃO DE SALVAR
+        swalConfirmTitleCreate: "Deseja cadastrar esta nova pessoa?",
+        swalConfirmTitleUpdate: "Deseja salvar as alterações para esta pessoa?",
+        swalConfirmText: "Após confirmado, os dados serão salvos no banco de dados.",
+        swalConfirmButton: "Sim, salvar",
+        swalCancelButton: "Cancelar",
+
+        selectOptionDefault: "Selecione uma opção",
+        selectOptionMale: "Masculino",
+        selectOptionFemale: "Feminino",
+        selectOptionOther: "Outro",
+    },
+    en: {
+        demoTitle: "Demo: CRUD with Supabase",
+        demoSubtitle: "Manage the records in the people table.",
+        addPersonBtn: "Add Person",
+        colName: "Name",
+        colSurname: "Surname",
+        colEmail: "Email",
+        colSexo: "Gender",
+        colBirthdate: "Birthdate",
+        colActions: "Actions",
+        modalAddTitle: "Add Person",
+        modalEditTitle: "Edit Person",
+        formName: "Name:",
+        formSurname: "Surname:",
+        formEmail: "Email:",
+        formSexo: "Gender:",
+        formBirthdate: "Birthdate:",
+        btnCancel: "Cancel",
+        btnSave: "Save",
+        confirmDeleteTitle: "Are you sure?",
+        confirmDeleteText: "You won't be able to revert this!",
+        btnConfirmDelete: "Yes, delete it!",
+        btnCancelDelete: "Cancel",
+        
+        // --- NEW MESSAGE TRANSLATIONS ---
+        swalSuccessTitle: "Operation Successful!",
+        swalSuccessTextCreate: "Record successfully created.", // Updated
+        swalSuccessTextUpdate: "Record successfully updated.", // New
+        
+        swalErrorTitle: "Oops! Something went wrong",
+        swalErrorText: "We couldn't complete your request. Please check your information and try again. If the issue persists, contact technical support.",
+        swalErrorTextDuplicate: "The email entered is already registered.", // New
+        
+        swalDeletedTitle: "Deleted!",
+        swalDeletedText: "The record has been deleted.",
+        
+        // SAVE CONFIRMATION
+        swalConfirmTitleCreate: "Do you want to register this new person?",
+        swalConfirmTitleUpdate: "Do you want to save the changes for this person?",
+        swalConfirmText: "Once confirmed, the data will be saved to the database.",
+        swalConfirmButton: "Yes, save",
+        swalCancelButton: "Cancel",
+
+        selectOptionDefault: "Select an option",
+        selectOptionMale: "Male",
+        selectOptionFemale: "Female",
+        selectOptionOther: "Other",
+    }
 };
 
 // === LÓGICA DE LA MODAL CORREGIDA ===
@@ -92,30 +233,65 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('personaForm').addEventListener('submit', async (e) => {
         e.preventDefault(); // Previene que la página se recargue
 
-        // Recopila los datos del formulario
+        // Asume que 'currentLanguage' y 'translations' están definidos globalmente
+        const trans = translations[currentLanguage];
         const id = document.getElementById('personaId').value;
-        const formData = { 
-            name: document.getElementById('name').value, 
-            surname: document.getElementById('surname').value, 
-            email: document.getElementById('email').value, 
-            sexo: document.getElementById('sexo').value, 
-            birthdate: document.getElementById('birthdate').value 
+        const isCreating = !id;
+
+        // 1. Definir los textos de confirmación dinámicamente
+        const confirmTitle = isCreating ? trans.swalConfirmTitleCreate : trans.swalConfirmTitleUpdate;
+        const successMessage = isCreating ? trans.swalSuccessTextCreate : trans.swalSuccessTextUpdate;
+
+        // 2. Mostrar la alerta de confirmación antes de guardar
+        const result = await Swal.fire({
+            title: confirmTitle,
+            text: trans.swalConfirmText,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: trans.swalConfirmButton,
+            cancelButtonText: trans.swalCancelButton
+        });
+
+        // 3. Detener si el usuario cancela
+        if (!result.isConfirmed) {
+            return;
+        }
+
+        // --- Lógica de Guardado ---
+
+        // Recopila los datos del formulario
+        const formData = {
+            name: document.getElementById('name').value,
+            surname: document.getElementById('surname').value,
+            email: document.getElementById('email').value,
+            sexo: document.getElementById('sexo').value,
+            birthdate: document.getElementById('birthdate').value
         };
 
-        // Si hay un 'id', actualiza (UPDATE). Si no, inserta (CREATE).
-        const { data, error } = id 
-            ? await supabaseClient.from('personas').update(formData).eq('id', id) 
-            : await supabaseClient.from('personas').insert([formData]);
+        // Envía la solicitud a Supabase
+        const { data, error } = isCreating
+            ? await supabaseClient.from('personas').insert([formData])
+            : await supabaseClient.from('personas').update(formData).eq('id', id);
 
         console.log('Respuesta de Supabase:', { data, error });
-        
+
         if (error) {
             console.error(error);
-            // Opcional: Mostrar una alerta de error al usuario
-            Swal.fire('Error', 'No se pudo guardar el registro.', 'error');
-        } else { 
-            closeModal(); 
-            loadPersonas(); 
+            
+            // Manejo de errores específicos (Duplicado de email)
+            if (error.code === '23505') {
+                Swal.fire(trans.swalErrorTitle, trans.swalErrorTextDuplicate, 'error');
+            } else {
+                // Error genérico
+                Swal.fire(trans.swalErrorTitle, trans.swalErrorText, 'error');
+            }
+        } else {
+            closeModal();
+            loadPersonas();
+            // Muestra el mensaje de éxito usando el texto dinámico
+            Swal.fire(trans.swalSuccessTitle, successMessage, 'success');
         }
     });
 
@@ -202,7 +378,7 @@ window.deletePersona = async (id) => {
                 .eq('id', id);
 
             if (error) {
-                console.error('Error en el borrado lógico:', error);
+                // console.error('Error en el borrado lógico:', error);
                 Swal.fire(trans.swalErrorTitle, trans.swalErrorText, 'error');
             } else {
                 Swal.fire(trans.swalDeletedTitle, trans.swalDeletedText, 'success');
